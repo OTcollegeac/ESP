@@ -19,7 +19,7 @@ def menu(): #This menu is a wrapper for the functions of the application with a 
         else:
             GetSalesPersonData(Id)
     elif selector=='2':
-        pass
+        GetBestReigon()
     elif selector=='3':
         GetGoat()
     else:
@@ -62,6 +62,15 @@ def GetGoat():#This function reads the csv and determines the highest value (num
 
     
     
+def GetBestReigon():
+    df=pd.read_csv('data.csv')
+    data=[]#initalises the data list
+    for index in range(len(df)):#loops through dataframe in order to create a list with the summed values of each persons sales
+        data.append( df.iloc[index,4:].sum())
+        for index in range(len(df)): #This loop is needed to search through the data frame to find which row the greatest value is on to present the best salesperson
+            currentValue=data[index]
+            if df.iloc[index,4:].sum() == currentValue: 
+
 
 
 
