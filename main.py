@@ -65,11 +65,29 @@ def GetGoat():#This function reads the csv and determines the highest value (num
 def GetBestReigon():
     df=pd.read_csv('data.csv')
     data=[]#initalises the data list
-    for index in range(len(df)):#loops through dataframe in order to create a list with the summed values of each persons sales
+    London=0
+    Wales=0
+    SouthWest=0
+    SouthEast=0
+    WestMidlands=0
+    for index in range(len(df)):
         data.append( df.iloc[index,4:].sum())
-        for index in range(len(df)): #This loop is needed to search through the data frame to find which row the greatest value is on to present the best salesperson
-            currentValue=data[index]
+        for index in range(len(df)): 
+            currentValue=data[index]#funky stuff is happening here....
             if df.iloc[index,4:].sum() == currentValue: 
+                if df.loc[index,"Region"]=='London':
+                    London+=currentValue
+                elif df.loc[index,"Region"]=='Wales':
+                    Wales+=currentValue
+                elif df.loc[index,"Region"]=='South-West':
+                    SouthWest+=currentValue
+                elif df.loc[index,"Region"]=='South-East':
+                    SouthEast+=currentValue
+                elif df.loc[index,"Region"]=='West-Midlands':
+                    WestMidlands+=currentValue
+                print(London,Wales,SouthEast,SouthWest,WestMidlands)
+                
+
 
 
 
